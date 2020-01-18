@@ -1,11 +1,11 @@
-:root {
+/* :root {
     --bg-color: #e3c4a8;
     --text-color: #000000;
     --bar-color: #4592af;
     --graph-color: #226089;
     --highlight-color: #;
     --highlight-color-alt: #;
-}
+} */
 
 body {
     font-family: sans-serif;
@@ -53,6 +53,8 @@ hr {
 }
 
 .BarChart-bar {
+  grid-column: 2;
+  grid-row: 2;
   background-color: #4592af;
   padding: 8px;
   margin: 5px;
