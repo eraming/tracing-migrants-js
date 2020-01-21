@@ -1,35 +1,35 @@
 //
 //
-//
-// function doFetch() {
-//   fetch("./public/migrants2019.json", { mode: 'cors', method: 'get', headers: { 'Access-Control-Allow-Origin': '*' }})
-//     .then(response => response.json())
-//     .then(data => {
-//
-//     let total = 0;
-//
-//
-//       for (let migrantInfo of data) {
-//           region = migrantInfo['Region of Incident'];
-//           dead = parseFloat(migrantInfo['Number Dead']);
-//           console.log(region);
-//           // console.log(dead);
-//
-//           if (region === 'US-Mexico Border') {
-//
-//             total += dead;
-//             console.log(migrantInfo['Web ID']);
-//             console.log(dead);
-//             console.log(total);
-//             // console.log(dead);
-//
-//           };
-//         };
-//
-//   });
-// };
-//
-// doFetch();
+
+function doFetch() {
+  fetch("./public/migrants2019.json", { mode: 'cors', method: 'get', headers: { 'Access-Control-Allow-Origin': '*' }})
+    .then(response => response.json())
+    .then(data => {
+
+    let total = 0;
+
+
+      for (let migrantInfo of data) {
+          region = migrantInfo['Region of Incident'];
+          dead = parseFloat(migrantInfo['Number Dead']);
+          console.log(region);
+          // console.log(dead);
+
+          if (region === 'US-Mexico Border') {
+
+            total += dead;
+            console.log("web id:", migrantInfo['Web ID']);
+            console.log(dead);
+            console.log(total);
+            // console.log(dead);
+
+          };
+        };
+
+  });
+};
+
+doFetch();
 
 
 
@@ -39,6 +39,13 @@ function secondFetch() {
     .then(response => response.json())
     .then(data => {
     console.log(data);
+
+    for (let migrantInfo of data) {
+          let region = migrantInfo.region;
+          let total = migrantInfo.total;
+          console.log(region);
+  };
+
 
   });
 };
