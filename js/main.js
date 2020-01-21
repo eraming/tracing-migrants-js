@@ -1,42 +1,99 @@
 //
-// fetch("./data/migraths2019.json");
-//   .then(response => response.json());
-//   .then(data => {
-//   console.log("Got the data!");
-//   console.log(data);
-// // TODO: Call a function to do something with this data.
-// });
+//
+//
+// function doFetch() {
+//   fetch("./public/migrants2019.json", { mode: 'cors', method: 'get', headers: { 'Access-Control-Allow-Origin': '*' }})
+//     .then(response => response.json())
+//     .then(data => {
+//
+//     let total = 0;
+//
+//
+//       for (let migrantInfo of data) {
+//           region = migrantInfo['Region of Incident'];
+//           dead = parseFloat(migrantInfo['Number Dead']);
+//           console.log(region);
+//           // console.log(dead);
+//
+//           if (region === 'US-Mexico Border') {
+//
+//             total += dead;
+//             console.log(migrantInfo['Web ID']);
+//             console.log(dead);
+//             console.log(total);
+//             // console.log(dead);
+//
+//           };
+//         };
+//
+//   });
+// };
+//
+// doFetch();
 
-  // let chart = document.querySelector('#BarChart-bar');
-  // let height = 70;
-  // chart.innerHTML += `
-  //     <div style="height: ${height}%">
-  //       Test BarChart
-  //     </div>
-  // `;
 
-  let migrantStats = [
+
+
+function secondFetch() {
+  fetch("./public/region-total.json", { mode: 'cors', method: 'get', headers: { 'Access-Control-Allow-Origin': '*' }})
+    .then(response => response.json())
+    .then(data => {
+    console.log(data);
+
+  });
+};
+
+secondFetch();
+
+
+
+// hard-coded array below
+
+let migrantStats = [
       [488, 'US-Mexico Border'],
       [326, 'Sub Saharan Africa'],
       [129, 'Europe'],
   ];
 
-function render() {
-    let chartDiv = document.querySelector('#BarChart');
-    chartDiv.innerHTML = '';
 
-    for (let migrantInfo of migrantStats) {
+function generateBar() {
+
+  for (let migrantInfo of migrantStats) {
         let stat = migrantInfo[0];
         let region = migrantInfo[1];
 
-        let bar = document.createElement('div');
+    let chart = document.querySelector('#BarChart');
+    let width = stat *.7 + "px";
+    chart.innerHTML += `
+        <div class="BarChart-bar" style="width: ${width}">
+          ${region}
+        </div>
+    `;
 
-        bar.classList.add('BarChart-bar');
-        bar.textContent = region;
-        bar.style.width = stat * .7 + "px";
+  };
+};
 
-        chartDiv.appendChild(bar);
-    }
-}
+generateBar();
 
-render();
+
+// function generateBar() {
+//     let chartDiv = document.querySelector('#BarChart');
+//     chartDiv.innerHTML = ''
+//
+//
+//     for (let migrantInfo of migrantStats) {
+//         let stat = migrantInfo[0];
+//         let region = migrantInfo[1];
+//
+//         let bar = document.createElement('div');
+//
+//         bar.classList.add('BarChart-bar');
+//         bar.textContent = region;
+//         bar.style.width = stat * .7 + "px";
+//
+//         chartDiv.appendChild(bar);
+//     }
+// }
+//
+//
+// generateBar();
