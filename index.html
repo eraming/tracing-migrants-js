@@ -12,59 +12,41 @@
     <div class="GridContainer">
       <div class="Header">
           <h1>2019 Recorded Migrant Deaths </h1>
-          <p> Data from <a href="https://missingmigrants.iom.int/">Missing Migrants Project</a>. </p>
-
-
-
+          <p> Data from <a href="https://missingmigrants.iom.int/">Missing Migrants Project</a>.</p>
+          <hr> Select from the drop down list to see records by month. If there are no records for the month,
+          data will not be displayed for that region. </p>
 
 
       <select id="months" onchange="render()">
-        <option selected value> -- select a month -- </option>
-        <option value="Dec">December</option>
+        <option selected value> -- reported month -- </option>
+        <option value="Jan">January</option>
+        <option value="Feb">February</option>
+        <option value="Mar">March</option>
+        <option value="Apr">April</option>
+        <option value="May">May</option>
+        <option value="Jun">June</option>
+        <option value="Jul">July</option>
+        <option value="Aug">August</option>
+        <option value="Sep">September</option>
         <option value="Oct">October</option>
+        <option value="Nov">November</option>
+        <option value="Dec">December</option>
       </select>
 
-      Read more: https://html.com/tags/select/#ixzz6BjKdPOzC
 
-      <div class="dropdown">
-        <button class="dropbtn">By Month</button>
-        <div class="dropdown-content">
-          <a href="#" onclick="fetchMonthDec();event.preventDefault();">December</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+      <!-- <div class="dropdown">
+
+        <div class="dropdown-content"> -->
+
         </div>
       </div>
 
       </div>
 
-
-
     <div id="BarChart">
-
-          <!-- <div onClick="alert('488 recorded deaths')"
-          class="BarChart-bar">US-Mexico Border</div>
-          <div onClick="alert('495 recorded deaths')"
-          class="BarChart-bar" style="width: 99%">Mediterranean</div>
-          <div onClick="alert('326 recorded deaths')"
-          class="BarChart-bar" style="width: 65.2%">Sub Saharan Africa</div>
-          <div onClick="alert('129 recorded deaths')"
-          class="BarChart-bar" style="width: 25.8%">Europe</div>
-          <div onClick="alert('138 recorded deaths')"
-          class="BarChart-bar" style="width: 27.6%">Southeast Asia</div>
-          <div onClick="alert('78 recorded deaths')"
-          class="BarChart-bar" style="width: 15.6%">South Asia</div>
-          <div onClick="alert('158 recorded deaths')"
-          class="BarChart-bar" style="width: 31.6%">Middle East</div>
-          <div onClick="alert('66 recorded deaths')"
-          class="BarChart-bar" style="width: 13.2%">Horn of Africa</div>
-          <div onClick="alert('253 recorded deaths')"
-          class="BarChart-bar" style="width: 50.6%">North Africa</div>
-          <div onClick="alert('33 recorded deaths')"
-          class="BarChart-bar" style="width: 6.6%">South America</div>
-          <div onClick="alert('174 recorded deaths')"
-          class="BarChart-bar" style="width: 34.8%">Central America/Carribean</div> -->
     </div>
-        <div class="BarChart-max">500</div>
+
+        <div class="BarChart-max">max</div>
     <hr class="BottomLine">
 
       </div>
