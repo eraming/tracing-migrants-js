@@ -16,16 +16,8 @@
     "total": 78
   },
   {
-   "region": "South America",
-    "total": 33
-  },
-  {
    "region": "North Africa",
     "total": 253
-  },
-  {
-    "region": "Horn of Africa",
-    "total": 66
   },
   {
     "region": "Middle East",
@@ -42,9 +34,5 @@
   {
     "region": "Central America",
     "total": 109
-  },
-  {
-    "region": "Carribbean",
-    "total": 65
   }
 ]

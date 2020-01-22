@@ -1,106 +1,112 @@
-//
-//
+render();
 
-function doFetch() {
+function generateBar(total, region) {
+  let chart = document.querySelector('#BarChart');
+  let width = total *1 + "px";
+  chart.innerHTML += `
+      <div class="BarChart-bar" style="width: ${width}" onClick="alert("Hello");">
+        ${region}  &nbsp; &nbsp;
+
+        <span class="total"> ${total} </span>
+      </div>
+  `;
+
+};
+
+
+
+//////////////////////// FUNCTIONS FOR SECOND SET OF DATA ////////////////////////////////////
+
+
+function drawBarsForMonth(selectedMonth) {
   fetch("./public/migrants2019.json", { mode: 'cors', method: 'get', headers: { 'Access-Control-Allow-Origin': '*' }})
     .then(response => response.json())
     .then(data => {
 
-    let total = 0;
-
+      let chart = document.querySelector('#BarChart');
+      chart.innerHTML = '';
+      let total_us = 0;
+      let total_med = 0;
 
       for (let migrantInfo of data) {
           region = migrantInfo['Region of Incident'];
           dead = parseFloat(migrantInfo['Number Dead']);
-          console.log(region);
-          // console.log(dead);
+          month = migrantInfo['Reported Month'];
 
-          if (region === 'US-Mexico Border') {
 
-            total += dead;
-            console.log("web id:", migrantInfo['Web ID']);
-            console.log(dead);
-            console.log(total);
-            // console.log(dead);
+          if (region === 'US-Mexico Border' && month === selectedMonth) {
 
+            total_us += dead;
+            // console.log("web id:", migrantInfo['Web ID']);
+            console.log("Total US Border:", total_us);
+            console.log(month);
           };
+
+
+          if (region === 'Mediterranean' && month === selectedMonth) {
+            total_med += dead;
+            // console.log("web id:", migrantInfo['Web ID']);
+            console.log("Total Mediterranean:", total_med);
+            console.log(month);
+          };
+
+
+        // ending bracket for loop
         };
 
+// calling functions after the for loop is complete
+
+      drawMonthBar(total_us, "US-Mexico Border");
+      drawMonthBar(total_med, "Mediterranean");
+
+
+    //data => { ending bracket
   });
+  // end bracket doFetch() {
 };
 
-doFetch();
 
+// fetchMonthDec();
 
-
-
-function secondFetch() {
-  fetch("./public/region-total.json", { mode: 'cors', method: 'get', headers: { 'Access-Control-Allow-Origin': '*' }})
-    .then(response => response.json())
-    .then(data => {
-    console.log(data);
-
-    for (let migrantInfo of data) {
-          let region = migrantInfo.region;
-          let total = migrantInfo.total;
-          console.log(region);
-  };
-
-
-  });
+function drawMonthBar(total, region) {
+  let chart = document.querySelector('#BarChart');
+  let width = total * 5 + "px";
+  chart.innerHTML += `
+      <div class="BarChart-bar" style="width: ${width}" onClick="alert("Hello");">
+        ${region}
+        <span class="total">  ${total}  </span>
+      </div>
+  `;
 };
 
-secondFetch();
 
 
 
-// hard-coded array below
+function render(data){
+  let chart = document.querySelector('#BarChart');
+  chart.innerHTML = '';
 
-let migrantStats = [
-      [488, 'US-Mexico Border'],
-      [326, 'Sub Saharan Africa'],
-      [129, 'Europe'],
-  ];
+  let selectElement = document.querySelector("#months")
+  let selectedMonth = selectElement.options[selectElement.selectedIndex].value
 
+  if (selectedMonth) {
+    drawBarsForMonth(selectedMonth)
+  } else {
+    fetch("./public/region-total.json", { mode: 'cors', method: 'get', headers: { 'Access-Control-Allow-Origin': '*' }})
+      .then(response => response.json())
+      .then(data => {
+      console.log(data);
 
-function generateBar() {
+      drawDefaultBars(data)
+    });
+  }
+}
 
-  for (let migrantInfo of migrantStats) {
-        let stat = migrantInfo[0];
-        let region = migrantInfo[1];
+function drawDefaultBars(data) {
+  for (let migrantInfo of data) {
+        let region = migrantInfo.region;
+        let total = migrantInfo.total;
 
-    let chart = document.querySelector('#BarChart');
-    let width = stat *.7 + "px";
-    chart.innerHTML += `
-        <div class="BarChart-bar" style="width: ${width}">
-          ${region}
-        </div>
-    `;
-
-  };
-};
-
-generateBar();
-
-
-// function generateBar() {
-//     let chartDiv = document.querySelector('#BarChart');
-//     chartDiv.innerHTML = ''
-//
-//
-//     for (let migrantInfo of migrantStats) {
-//         let stat = migrantInfo[0];
-//         let region = migrantInfo[1];
-//
-//         let bar = document.createElement('div');
-//
-//         bar.classList.add('BarChart-bar');
-//         bar.textContent = region;
-//         bar.style.width = stat * .7 + "px";
-//
-//         chartDiv.appendChild(bar);
-//     }
-// }
-//
-//
-// generateBar();
+      generateBar(total, region);
+    };
+}
