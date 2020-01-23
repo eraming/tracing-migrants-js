@@ -2,7 +2,7 @@ render();
 
 function generateBar(total, region) {
   let chart = document.querySelector('#BarChart');
-  let width = total *1 + "px";
+  let width = total * 1 + "px";
   chart.innerHTML += `
       <div class="BarChart-bar" style="width: ${width}" onClick="alert("Hello");">
         ${region}  &nbsp; &nbsp;
@@ -14,7 +14,7 @@ function generateBar(total, region) {
 };
 
 
-////////////////     FUNCTIONS FOR SECOND DATA DIMENSION       ////////////////////////////////
+///////////////     FUNCTIONS FOR SECOND DATA DIMENSION       ////////////////////////////////
 
 
 function drawBarsForMonth(selectedMonth) {
@@ -77,7 +77,6 @@ function drawBarsForMonth(selectedMonth) {
           if (region === 'Europe' && month === selectedMonth) {
             total_eur += dead;
           };
-
           if (region === 'Central America' && month === selectedMonth) {
             total_cen += dead;
           };
