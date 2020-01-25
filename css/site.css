@@ -103,6 +103,7 @@ hr {
   display: flex;
   justify-content: space-between;
   min-width: 120px;
+  max-width: 450px;
   max-height: 50px;
 }
 
